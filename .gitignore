@@ -1,0 +1,5 @@
+*.exe
+*.log
+dinput8.dll
+!dist/dinput8.dll
+rematch_inplace.on
