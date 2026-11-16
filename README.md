@@ -51,6 +51,32 @@ Full reverse-engineering notes, addresses and the crash post-mortems are in [REM
 - Only one exe build is supported (see above).
 - The latest overlay hook (engine call-site patch) was verified with synthetic tests against the Steam overlay DLL, not yet across many real online sessions. Please report problems with `rematch_mod.log` attached.
 
+## Project structure
+
+```
+tekken7-seamless-rematch/
+├── dinput8.cpp             # the whole mod: DirectInput8 proxy, patcher, rematch thunk, overlay
+├── imgui_user_config.h     # routes ImGui asserts to the log instead of abort()
+├── build.bat               # MinGW-w64 build (release / research)
+├── REMATCH_RESEARCH.md     # reverse-engineering notes, addresses, crash post-mortems
+├── LICENSE                 # MIT (this project)
+├── README.md
+└── imgui/                  # vendored Dear ImGui v1.92.9b + DX11/Win32 backends (MIT, own LICENSE.txt)
+```
+
+`dinput8.dll` is built into the repo root (git-ignored) and published via Releases.
+
+Installed layout (game folder):
+
+```
+TekkenGame/Binaries/Win64/
+├── TekkenGame-Win64-Shipping.exe
+├── dinput8.dll             # this mod
+├── rematch_inplace.on      # created by the mod: toggle ON
+├── rematch_mod.log         # created by the mod
+└── rematch_overlay.off     # optional, you create it to disable the overlay
+```
+
 ## Build
 
 Requires MSYS2 MinGW-w64 `g++` (`C:\msys64\mingw64\bin`).
