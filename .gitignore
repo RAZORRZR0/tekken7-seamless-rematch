@@ -1,5 +1,5 @@
 *.exe
 *.log
 dinput8.dll
-!dist/dinput8.dll
+dist/
 rematch_inplace.on
